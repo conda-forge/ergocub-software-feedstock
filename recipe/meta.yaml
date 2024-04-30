@@ -30,6 +30,8 @@ outputs:
         - pkg-config
         - ninja
         - multisheller
+        # YARP idl tools are used in this recipe
+        - libyarp  # [build_platform != target_platform]
       host:
         - ycm-cmake-modules
         - libyarp
