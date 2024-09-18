@@ -9,7 +9,7 @@ source:
     sha256: 8d2ca5ef8ad3b2f0cab64513bf507488180dac3f1edbfcbef820133ce45951c0
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: libergocub-software
