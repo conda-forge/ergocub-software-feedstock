@@ -19,7 +19,7 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 idyntree:
-- '12'
+- '13'
 libopencv:
 - 4.10.0
 libyarp:

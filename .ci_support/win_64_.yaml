@@ -9,7 +9,7 @@ channel_targets:
 cxx_compiler:
 - vs2019
 idyntree:
-- '12'
+- '13'
 libopencv:
 - 4.10.0
 libyarp:
