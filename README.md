@@ -7,7 +7,13 @@ Home: https://github.com/icub-tech-iit/ergocub-software
 
 Package license: BSD-3-Clause
 
-Summary: Software required to simulate and run the ergoCub humanoid robot.
+Summary: Software and configuration files required to simulate and run the ergoCub humanoid robot.
+
+This feedstock builds the following packages:
+  * `ergocub-models`: Depedency-free package that contains the `URDF` models of the different version of the `ergoCub` robot.
+  * `libergocub-software`: Plugins and executables used for ergoCub simulations and for operating the ergoCub robot, it depends on `ergocub-models`.
+  * `ergocub-models` : Meta-package that install all the software provided by the feedstock, i.e. `libergocub-software` and `ergocub-models`.
+
 
 Current build status
 ====================
@@ -74,6 +80,7 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-ergocub--models-green.svg)](https://anaconda.org/conda-forge/ergocub-models) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ergocub-models.svg)](https://anaconda.org/conda-forge/ergocub-models) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ergocub-models.svg)](https://anaconda.org/conda-forge/ergocub-models) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ergocub-models.svg)](https://anaconda.org/conda-forge/ergocub-models) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ergocub--software-green.svg)](https://anaconda.org/conda-forge/ergocub-software) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ergocub-software.svg)](https://anaconda.org/conda-forge/ergocub-software) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ergocub-software.svg)](https://anaconda.org/conda-forge/ergocub-software) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ergocub-software.svg)](https://anaconda.org/conda-forge/ergocub-software) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libergocub--software-green.svg)](https://anaconda.org/conda-forge/libergocub-software) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libergocub-software.svg)](https://anaconda.org/conda-forge/libergocub-software) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libergocub-software.svg)](https://anaconda.org/conda-forge/libergocub-software) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libergocub-software.svg)](https://anaconda.org/conda-forge/libergocub-software) |
 
@@ -87,41 +94,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `ergocub-software, libergocub-software` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `ergocub-models, ergocub-software, libergocub-software` can be installed with `conda`:
 
 ```
-conda install ergocub-software libergocub-software
-```
-
-or with `mamba`:
-
-```
-mamba install ergocub-software libergocub-software
-```
-
-It is possible to list all of the versions of `ergocub-software` available on your platform with `conda`:
-
-```
-conda search ergocub-software --channel conda-forge
+conda install ergocub-models ergocub-software libergocub-software
 ```
 
 or with `mamba`:
 
 ```
-mamba search ergocub-software --channel conda-forge
+mamba install ergocub-models ergocub-software libergocub-software
+```
+
+It is possible to list all of the versions of `ergocub-models` available on your platform with `conda`:
+
+```
+conda search ergocub-models --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search ergocub-models --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search ergocub-software --channel conda-forge
+mamba repoquery search ergocub-models --channel conda-forge
 
-# List packages depending on `ergocub-software`:
-mamba repoquery whoneeds ergocub-software --channel conda-forge
+# List packages depending on `ergocub-models`:
+mamba repoquery whoneeds ergocub-models --channel conda-forge
 
-# List dependencies of `ergocub-software`:
-mamba repoquery depends ergocub-software --channel conda-forge
+# List dependencies of `ergocub-models`:
+mamba repoquery depends ergocub-models --channel conda-forge
 ```
 
 
