@@ -9,7 +9,7 @@ cmake ${CMAKE_ARGS} -GNinja .. \
       -DCMAKE_BUILD_TYPE=Release \
       -DBUILD_SHARED_LIBS:BOOL=ON \
       -DBUILD_TESTING:BOOL=ON \
-      -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX \
+      -DCMAKE_INSTALL_PREFIX=$PREFIX \
       ..
 
 cmake --build . --config Release
