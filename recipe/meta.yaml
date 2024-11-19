@@ -9,9 +9,24 @@ source:
     sha256: 8d2ca5ef8ad3b2f0cab64513bf507488180dac3f1edbfcbef820133ce45951c0
 
 build:
-  number: 1
+  number: 2
 
 outputs:
+  - name: ergocub-models
+    script: build_models.sh  # [unix]
+    script: bld_models.bat  # [win]
+    requirements:
+      build:
+        - cmake
+        - pkg-config
+        - ninja
+        - multisheller
+
+    test:
+      commands:
+        - test -f ${PREFIX}/share/ergoCub/robots/ergoCubSN002/model.urdf  # [unix]
+        - if not exist %LIBRARY_PREFIX%\\share\\ergoCub\\robots\\ergoCubSN002\\model.urdf exit 1  # [win]
+
   - name: libergocub-software
     script: build_cxx.sh  # [unix]
     script: bld_cxx.bat  # [win]
@@ -29,7 +44,6 @@ outputs:
         - cmake
         - pkg-config
         - ninja
-        - multisheller
         # YARP idl tools are used in this recipe
         - libyarp  # [build_platform != target_platform]
       host:
@@ -37,6 +51,8 @@ outputs:
         - libyarp
         - libopencv
         - idyntree
+      run:
+        - {{ pin_subpackage('ergocub-models', max_pin='x.x.x') }}
 
     test:
       commands:
@@ -57,7 +73,13 @@ about:
   home: https://github.com/icub-tech-iit/ergocub-software
   license: BSD-3-Clause
   license_file: LICENSE
-  summary: 'Software required to simulate and run the ergoCub humanoid robot.'
+  summary: 'Software and configuration files required to simulate and run the ergoCub humanoid robot.'
+  description: |
+    This feedstock builds the following packages:
+      * `ergocub-models`: Depedency-free package that contains the `URDF` models of the different version of the `ergoCub` robot.
+      * `libergocub-software`: Plugins and executables used for ergoCub simulations and for operating the ergoCub robot, it depends on `ergocub-models`.
+      * `ergocub-models` : Meta-package that install all the software provided by the feedstock, i.e. `libergocub-software` and `ergocub-models`.
+
 
 extra:
   feedstock-name: ergocub-software
