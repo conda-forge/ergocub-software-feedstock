@@ -1,3 +1,4 @@
+cd urdf
 mkdir build
 cd build
 
