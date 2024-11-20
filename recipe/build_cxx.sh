@@ -1,6 +1,5 @@
 #!/bin/sh
 
-cd urdf
 rm -rf build
 mkdir build
 cd build
