@@ -1,0 +1,97 @@
+From 87426c7ec5600ad3c8f0a883821401c62477616a Mon Sep 17 00:00:00 2001
+From: Silvio Traversaro <silvio@traversaro.it>
+Date: Tue, 19 Nov 2024 21:59:23 +0100
+Subject: [PATCH] Support for configure and installing URDF models of ergocub
+ without any dependencies
+
+---
+ CMakeLists.txt       | 15 +++++----------
+ tests/CMakeLists.txt |  5 +++--
+ urdf/CMakeLists.txt  | 16 ++++++++++++++++
+ 3 files changed, 24 insertions(+), 12 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ca81b33e..a63f30ba 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -24,6 +24,7 @@ include(AddUninstallTarget)
+ 
+ option(BUILD_TESTING "Run tests for the generated models" OFF)
+ option(COMPILE_ergoCubEmotions "Compile the module controlling the ergoCub emotions" OFF)
++option(COMPILE_ergoCubModels "Configure and install the URDF models of the ergoCub robots" ON)
+ 
+ if(MSVC)
+   set(CMAKE_DEBUG_POSTFIX "d")
+@@ -53,16 +54,10 @@ if(NOT CMAKE_CONFIGURATION_TYPES)
+ endif()
+ 
+ set(BUILD_PREFIX "ergoCub")
+-add_subdirectory(urdf)
+-
+-# Install empty ergoCub file in <prefix>/share/ament_index/resource_index/packages
+-# so that ergoCub package is found by ROS2
+-# See https://github.com/robotology/icub-models/issues/177
+-# and https://github.com/icub-tech-iit/ergocub-software/issues/59
+-file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/ergoCub_empty_file "")
+-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/ergoCub_empty_file
+-        DESTINATION share/ament_index/resource_index/packages
+-        RENAME ergoCub)
++
++if (COMPILE_ergoCubModels)
++  add_subdirectory(urdf)
++endif()
+ 
+ # TODO to be defined
+ if (BUILD_TESTING)
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index 192a2b52..6a2d6393 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -7,8 +7,10 @@ add_executable(ergocub-model-test ergocub-model-test.cpp)
+ target_link_libraries(ergocub-model-test ${iDynTree_LIBRARIES} YARP::YARP_os)
+ 
+ macro(add_ergocub_model_test yarpRobotName)
+-    add_test(NAME ${yarpRobotName}ConsistencyCheck
++    if (COMPILE_ergoCubModels)
++        add_test(NAME ${yarpRobotName}ConsistencyCheck
+              COMMAND ergocub-model-test --model ${CMAKE_BINARY_DIR}/${BUILD_PREFIX}/robots/${yarpRobotName}/model.urdf)
++    endif()
+ endmacro()
+ 
+ # Model generated with simmechanics
+@@ -18,4 +20,3 @@ add_ergocub_model_test(ergoCubGazeboV1_2)
+ add_ergocub_model_test(ergoCubSN000)
+ add_ergocub_model_test(ergoCubSN001)
+ add_ergocub_model_test(ergoCubSN002)
+-
+diff --git a/urdf/CMakeLists.txt b/urdf/CMakeLists.txt
+index 822926f5..f5e21ce7 100644
+--- a/urdf/CMakeLists.txt
++++ b/urdf/CMakeLists.txt
+@@ -5,6 +5,13 @@
+ # BSD-3-Clause license. See the accompanying LICENSE file for details.
+ 
+ 
++# Detect if we are doing a standalone build of the ergocub-models
++if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
++  cmake_minimum_required(VERSION 3.22.1)
++  project(ergocub-models LANGUAGES NONE)
++  set(BUILD_PREFIX "ergoCub")
++  include(GNUInstallDirs)
++endif()
+ 
+ set(GAZEBO_SUPPORTED_MODELS "")
+ list(APPEND GAZEBO_SUPPORTED_MODELS "ergoCubGazeboV1")
+@@ -83,3 +90,12 @@ endforeach()
+ 
+ # install the directory
+ install(DIRECTORY ${CMAKE_BINARY_DIR}/${BUILD_PREFIX} DESTINATION share)
++
++# Install empty ergoCub file in <prefix>/share/ament_index/resource_index/packages
++# so that ergoCub package is found by ROS2
++# See https://github.com/robotology/icub-models/issues/177
++# and https://github.com/icub-tech-iit/ergocub-software/issues/59
++file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/ergoCub_empty_file "")
++install(FILES ${CMAKE_CURRENT_BINARY_DIR}/ergoCub_empty_file
++        DESTINATION share/ament_index/resource_index/packages
++        RENAME ergoCub)
