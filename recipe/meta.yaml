@@ -11,7 +11,7 @@ source:
       - 273.patch
 
 build:
-  number: 2
+  number: 3
 
 outputs:
   - name: ergocub-models
