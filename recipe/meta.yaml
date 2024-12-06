@@ -7,8 +7,6 @@ package:
 source:
   - url: https://github.com/icub-tech-iit/ergocub-software/archive/refs/tags/v{{ version }}.tar.gz
     sha256: a8359034cee4f0c6aaef8852c9c75781e34c15d4976638429a0da3902638a30a
-    patches:
-      - 273.patch
 
 build:
   number: 0
