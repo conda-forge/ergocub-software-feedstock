@@ -1,4 +1,4 @@
-{% set version = "0.7.5" %}
+{% set version = "0.7.6" %}
 
 package:
   name: ergocub-software-split
@@ -6,12 +6,12 @@ package:
 
 source:
   - url: https://github.com/icub-tech-iit/ergocub-software/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 8d2ca5ef8ad3b2f0cab64513bf507488180dac3f1edbfcbef820133ce45951c0
+    sha256: a8359034cee4f0c6aaef8852c9c75781e34c15d4976638429a0da3902638a30a
     patches:
       - 273.patch
 
 build:
-  number: 3
+  number: 0
 
 outputs:
   - name: ergocub-models
