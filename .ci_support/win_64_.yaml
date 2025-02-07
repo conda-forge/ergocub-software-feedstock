@@ -11,7 +11,7 @@ cxx_compiler:
 idyntree:
 - '13'
 libopencv:
-- 4.10.0
+- 4.11.0
 libyarp:
 - 3.10.1
 target_platform:
