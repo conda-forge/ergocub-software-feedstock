@@ -1,4 +1,4 @@
-{% set version = "0.7.7" %}
+{% set version = "0.7.8" %}
 
 package:
   name: ergocub-software-split
@@ -6,10 +6,10 @@ package:
 
 source:
   - url: https://github.com/icub-tech-iit/ergocub-software/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: b507c08a284c8e47bb64b4d01648a151347339a87a69c3fd41f16fff39de076f
+    sha256: 9d26a3c6f7e25e873bf234ec0592a824494fe7de3afba691a31da1cf8d79acee
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: ergocub-models
@@ -50,6 +50,9 @@ outputs:
         - ycm-cmake-modules
         - libyarp
         - libopencv
+        # Temporary workaround to avoid to update to vs2022, 
+        # see https://github.com/conda-forge/yarp-feedstock/pull/70#issuecomment-2910021339
+        - libopencv 4.11.0 *_6
         - idyntree
       run:
         - {{ pin_subpackage('ergocub-models', max_pin='x.x.x') }}
