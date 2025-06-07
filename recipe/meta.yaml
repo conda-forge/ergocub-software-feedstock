@@ -50,6 +50,9 @@ outputs:
         - ycm-cmake-modules
         - libyarp
         - libopencv
+        # Temporary workaround to avoid to update to vs2022, 
+        # see https://github.com/conda-forge/yarp-feedstock/pull/70#issuecomment-2910021339
+        - libopencv 4.11.0 *_6
         - idyntree
       run:
         - {{ pin_subpackage('ergocub-models', max_pin='x.x.x') }}
