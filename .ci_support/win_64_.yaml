@@ -13,6 +13,6 @@ idyntree:
 libopencv:
 - 4.11.0
 libyarp:
-- 3.11.2
+- 3.12.0
 target_platform:
 - win-64
