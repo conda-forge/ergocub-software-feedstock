@@ -9,7 +9,7 @@ channel_targets:
 cxx_compiler:
 - vs2022
 idyntree:
-- '13'
+- '14'
 libopencv:
 - 4.12.0
 libyarp:
