@@ -84,4 +84,5 @@ about:
 extra:
   feedstock-name: ergocub-software
   recipe-maintainers:
+    - Nicogene
     - traversaro
