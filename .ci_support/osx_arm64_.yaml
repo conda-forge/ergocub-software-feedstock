@@ -19,7 +19,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '19'
 idyntree:
-- '14'
+- '15'
 libopencv:
 - 4.12.0
 libyarp:
