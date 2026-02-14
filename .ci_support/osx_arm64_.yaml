@@ -21,7 +21,7 @@ cxx_compiler_version:
 idyntree:
 - '15'
 libopencv:
-- 4.12.0
+- 4.13.0
 libyarp:
 - 3.12.2
 macos_machine:
