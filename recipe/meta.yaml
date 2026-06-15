@@ -78,7 +78,7 @@ about:
     This feedstock builds the following packages:
       * `ergocub-models`: Depedency-free package that contains the `URDF` models of the different version of the `ergoCub` robot.
       * `libergocub-software`: Plugins and executables used for ergoCub simulations and for operating the ergoCub robot, it depends on `ergocub-models`.
-      * `ergocub-models` : Meta-package that install all the software provided by the feedstock, i.e. `libergocub-software` and `ergocub-models`.
+      * `ergocub-software` : Meta-package that install all the software provided by the feedstock, i.e. `libergocub-software` and `ergocub-models`.
 
 
 extra:
