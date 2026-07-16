@@ -21,7 +21,7 @@ idyntree:
 libopencv:
 - 4.13.0
 libyarp:
-- 3.12.2
+- 3.12.3
 target_platform:
 - linux-64
 zip_keys:
