@@ -23,7 +23,7 @@ idyntree:
 libopencv:
 - 4.13.0
 libyarp:
-- 3.12.2
+- 3.12.3
 macos_machine:
 - arm64-apple-darwin20.0.0
 target_platform:
