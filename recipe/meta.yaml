@@ -9,7 +9,7 @@ source:
     sha256: 6172efd6224b7fc039569e55c79958f9aee744e416aeb1a17c946e50ec40b992
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: ergocub-models
