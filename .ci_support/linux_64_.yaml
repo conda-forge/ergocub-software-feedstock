@@ -19,7 +19,7 @@ docker_image:
 idyntree:
 - '15'
 libopencv:
-- 4.13.0
+- 5.0.0
 libyarp:
 - 3.12.3
 target_platform:
